@@ -1,0 +1,56 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# sfarc.node
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of sfarc.node is to extract unique shared boundaries (**arcs**) from sf polygons as sf lines. 
+
+## Installation
+
+You can install the released version of sfarc.node from [Github](https://github.com/mdsumner/sfarc.node) with:
+
+``` r
+remotes::install_github("mdsumner/sfarc.node")
+```
+
+## Example
+
+This shows examples of getting these shared boundaries. 
+
+
+```{r example}
+library(sfarc.node)
+
+f <- system.file("gpkg/nc.gpkg", package = "sf", mustWork = TRUE)
+sfx <- sf::read_sf(f)
+arcs <- sf_arcnode(sfx)
+plot(arcs["arc"], col = sample(hcl.colors(nrow(arcs))))
+#'
+s <- sample(seq_len(dim(sfx)[1L]), 1L)
+plot(sfx[arcs$feature_ids[[s]]$row, 1], reset = FALSE, col = c("grey", "grey10"))
+plot(arcs[s, 1], add = TRUE, col = "hotpink2", lwd = 6)
+#'
+plot(sfx, col = sample(grey.colors(10), 100, replace = TRUE), reset = FALSE)
+plot(dplyr::sample_n(arcs, 20), col = "hotpink2", lwd = 6, add = TRUE)
+```
+
+---
+
+## Code of Conduct
+  
+Please note that the sfarc.node project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
