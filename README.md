@@ -43,7 +43,7 @@ plot(arcs["arc"], col = sample(hcl.colors(nrow(arcs))))
 We can get the original polygon id/s for a given boundary.
 
 ``` r
-s <- sample(seq_len(dim(sfx)[1L]), 1L)
+s <- sample(seq_len(dim(arcs)[1L]), 1L)
 plot(sfx[arcs$feature_ids[[s]]$row, "geom"], reset = FALSE, col = c("grey", "grey10"))
 plot(arcs[s, 1], add = TRUE, col = "hotpink2", lwd = 6)
 ```
@@ -51,12 +51,35 @@ plot(arcs[s, 1], add = TRUE, col = "hotpink2", lwd = 6)
 <img src="man/figures/README-individual-1.png" width="100%" />
 
 ``` r
-#'
+
 plot(sfx$geom, col = sample(grey.colors(10), 100, replace = TRUE), reset = FALSE)
 plot(dplyr::sample_n(arcs[1], 20), col = "hotpink2", lwd = 6, add = TRUE)
 ```
 
 <img src="man/figures/README-individual-2.png" width="100%" />
+
+Works fine with more hardcore data.
+
+``` r
+arx <- sf_arcnode(silicate::inlandwaters)
+
+idx <- which(unlist(lapply(arx$feature_ids, function(.x) length(.x$row) > 1)))
+s <- idx[7]
+plot(silicate::inlandwaters[arx$feature_ids[[s]]$row, "geom"], reset = FALSE, col = c("grey", "grey10"))
+plot(arx[s, 1], add = TRUE, col = "hotpink2", lwd = 4)
+```
+
+<img src="man/figures/README-lakes-1.png" width="100%" />
+
+``` r
+
+
+s <- idx[3]
+plot(silicate::inlandwaters[arx$feature_ids[[s]]$row, "geom"], reset = FALSE, col = c("grey", "grey10"))
+plot(arx[s, 1], add = TRUE, col = "hotpink2", lwd = 4)
+```
+
+<img src="man/figures/README-lakes-2.png" width="100%" />
 
 -----
 

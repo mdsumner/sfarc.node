@@ -1,5 +1,7 @@
 ---
 output: github_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -52,12 +54,29 @@ set.seed(6)
 We can get the original polygon id/s for a given boundary. 
 
 ```{r individual}
-s <- sample(seq_len(dim(sfx)[1L]), 1L)
+s <- sample(seq_len(dim(arcs)[1L]), 1L)
 plot(sfx[arcs$feature_ids[[s]]$row, "geom"], reset = FALSE, col = c("grey", "grey10"))
 plot(arcs[s, 1], add = TRUE, col = "hotpink2", lwd = 6)
-#'
+
 plot(sfx$geom, col = sample(grey.colors(10), 100, replace = TRUE), reset = FALSE)
 plot(dplyr::sample_n(arcs[1], 20), col = "hotpink2", lwd = 6, add = TRUE)
+```
+
+Works fine with more intensive data. 
+
+```{r lakes}
+arx <- sf_arcnode(silicate::inlandwaters)
+
+idx <- which(unlist(lapply(arx$feature_ids, function(.x) length(.x$row) > 1)))
+s <- idx[7]
+plot(silicate::inlandwaters[arx$feature_ids[[s]]$row, "geom"], reset = FALSE, col = c("grey", "grey10"))
+plot(arx[s, 1], add = TRUE, col = "hotpink2", lwd = 4)
+
+
+s <- idx[3]
+plot(silicate::inlandwaters[arx$feature_ids[[s]]$row, "geom"], reset = FALSE, col = c("grey", "grey10"))
+plot(arx[s, 1], add = TRUE, col = "hotpink2", lwd = 4)
+
 ```
 
 ---
