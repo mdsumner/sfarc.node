@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 # sfarc.node
 
 <!-- badges: start -->
+[![R build status](https://github.com/mdsumner/sfarc.node/workflows/R-CMD-check/badge.svg)](https://github.com/mdsumner/sfarc.node/actions)
 <!-- badges: end -->
 
 The goal of sfarc.node is to extract unique shared boundaries (**arcs**) from sf polygons as sf lines. 
@@ -40,13 +41,20 @@ f <- system.file("gpkg/nc.gpkg", package = "sf", mustWork = TRUE)
 sfx <- sf::read_sf(f)
 arcs <- sf_arcnode(sfx)
 plot(arcs["arc"], col = sample(hcl.colors(nrow(arcs))))
-#'
+
+```
+
+```{r include=FALSE}
+set.seed(6)
+```
+
+```{r individual}
 s <- sample(seq_len(dim(sfx)[1L]), 1L)
-plot(sfx[arcs$feature_ids[[s]]$row, 1], reset = FALSE, col = c("grey", "grey10"))
+plot(sfx[arcs$feature_ids[[s]]$row, "geom"], reset = FALSE, col = c("grey", "grey10"))
 plot(arcs[s, 1], add = TRUE, col = "hotpink2", lwd = 6)
 #'
-plot(sfx, col = sample(grey.colors(10), 100, replace = TRUE), reset = FALSE)
-plot(dplyr::sample_n(arcs, 20), col = "hotpink2", lwd = 6, add = TRUE)
+plot(sfx$geom, col = sample(grey.colors(10), 100, replace = TRUE), reset = FALSE)
+plot(dplyr::sample_n(arcs[1], 20), col = "hotpink2", lwd = 6, add = TRUE)
 ```
 
 ---

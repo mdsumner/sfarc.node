@@ -10,6 +10,14 @@ Create lines from shared boundaries between polygons. A single copy of a shared 
  created as 'sf' lines, keeping the row identity of the input polygon/s. It's expected that polygons have
  clean neighbour boundaries and don't overlap.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/mdsumner/sfarc.node}
+  \item Report bugs at \url{https://github.com/mdsumner/sfarc.node/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Michael Sumner \email{mdsumner@gmail.com} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})
 
