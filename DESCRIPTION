@@ -23,3 +23,5 @@ Imports:
     dplyr
 Suggests:
     ggplot2
+URL: https://github.com/mdsumner/sfarc.node
+BugReports: https://github.com/mdsumner/sfarc.node/issues
