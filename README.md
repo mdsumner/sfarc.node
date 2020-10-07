@@ -14,7 +14,7 @@ from sf polygons as sf lines.
 
 ## Installation
 
-You can install the released version of sfarc.node from
+You can install the dev version of sfarc.node from
 [Github](https://github.com/mdsumner/sfarc.node) with:
 
 ``` r
@@ -23,7 +23,11 @@ remotes::install_github("mdsumner/sfarc.node")
 
 ## Example
 
-This shows examples of getting these shared boundaries.
+This shows examples of getting these shared boundaries. The feature id/s
+(the row number/s) from which each boundary came are listed in a list
+column, so that we can look up the original polygon/s for each **arc**.
+(There should be 1, or possibly 2 but results may vary wildly with
+unclean data).
 
 ``` r
 library(sfarc.node)
@@ -35,6 +39,8 @@ plot(arcs["arc"], col = sample(hcl.colors(nrow(arcs))))
 ```
 
 <img src="man/figures/README-example-1.png" width="100%" />
+
+We can get the original polygon id/s for a given boundary.
 
 ``` r
 s <- sample(seq_len(dim(sfx)[1L]), 1L)
