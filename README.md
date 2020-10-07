@@ -61,25 +61,30 @@ plot(dplyr::sample_n(arcs[1], 20), col = "hotpink2", lwd = 6, add = TRUE)
 Works fine with more intensive data.
 
 ``` r
-arx <- sf_arcnode(silicate::inlandwaters)
+xx <- ozmaps::abs_ced
+arx <- sf_arcnode(xx)
 
 idx <- which(unlist(lapply(arx$feature_ids, function(.x) length(.x$row) > 1)))
-s <- idx[7]
-plot(silicate::inlandwaters[arx$feature_ids[[s]]$row, "geom"], reset = FALSE, col = c("grey", "grey10"))
+s <- idx[1]
+plot(xx[arx$feature_ids[[s]]$row, "geometry"], reset = FALSE, col = c("grey", "grey10"))
 plot(arx[s, 1], add = TRUE, col = "hotpink2", lwd = 4)
 ```
 
-<img src="man/figures/README-lakes-1.png" width="100%" />
+<img src="man/figures/README-ced-1.png" width="100%" />
 
 ``` r
 
-
-s <- idx[3]
-plot(silicate::inlandwaters[arx$feature_ids[[s]]$row, "geom"], reset = FALSE, col = c("grey", "grey10"))
-plot(arx[s, 1], add = TRUE, col = "hotpink2", lwd = 4)
+for (j in 1:6) {
+par(mfrow = c(5, 5), mar = rep(0, 4))
+for (i in 1:25) {
+s <- sample(idx, 1)
+plot(xx[arx$feature_ids[[s]]$row, "geometry"], reset = FALSE, col = grey(c(0.8, 0.5)))
+plot(arx[s, 1], add = TRUE, col = "hotpink1", lwd = 4)
+}
+}
 ```
 
-<img src="man/figures/README-lakes-2.png" width="100%" />
+<img src="man/figures/README-ced-2.png" width="100%" /><img src="man/figures/README-ced-3.png" width="100%" /><img src="man/figures/README-ced-4.png" width="100%" /><img src="man/figures/README-ced-5.png" width="100%" /><img src="man/figures/README-ced-6.png" width="100%" /><img src="man/figures/README-ced-7.png" width="100%" />
 
 -----
 
