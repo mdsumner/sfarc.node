@@ -25,8 +25,8 @@
 #' plot(sfx[arcs$feature_ids[[s]]$row, 1], reset = FALSE, col = c("grey", "grey10"))
 #' plot(arcs[s, 1], add = TRUE, col = "hotpink2", lwd = 6)
 #'
-#' plot(sfx, col = sample(grey.colors(10), 100, replace = TRUE), reset = FALSE)
-#' plot(dplyr::sample_n(arcs, 20), col = "hotpink2", lwd = 6, add = TRUE)
+#' plot(sfx$geom, col = sample(grey.colors(10), 100, replace = TRUE), reset = FALSE)
+#' plot(dplyr::sample_n(arcs[1L], 20), col = "hotpink2", lwd = 6, add = TRUE)
 sf_arcnode <- function(x) {
   ##if (!grepl("POLYGON", sf::st_geometry_type(x))) message("sf_arcnode is designed for polygon layers, behaviour on other types ")
   sc <- silicate::ARC(x)

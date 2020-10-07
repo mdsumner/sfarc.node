@@ -19,6 +19,7 @@ Imports:
     silicate (>= 0.6.1),
     sf,
     tibble,
-    sfheaders
+    sfheaders,
+    dplyr
 Suggests:
     ggplot2

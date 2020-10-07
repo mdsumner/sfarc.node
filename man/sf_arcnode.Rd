@@ -32,6 +32,6 @@ s <- sample(seq_len(dim(sfx)[1L]), 1L)
 plot(sfx[arcs$feature_ids[[s]]$row, 1], reset = FALSE, col = c("grey", "grey10"))
 plot(arcs[s, 1], add = TRUE, col = "hotpink2", lwd = 6)
 
-plot(sfx, col = sample(grey.colors(10), 100, replace = TRUE), reset = FALSE)
-plot(dplyr::sample_n(arcs, 20), col = "hotpink2", lwd = 6, add = TRUE)
+plot(sfx$geom, col = sample(grey.colors(10), 100, replace = TRUE), reset = FALSE)
+plot(dplyr::sample_n(arcs[1L], 20), col = "hotpink2", lwd = 6, add = TRUE)
 }
