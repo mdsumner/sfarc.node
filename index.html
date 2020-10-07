@@ -77,14 +77,14 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install the released version of sfarc.node from <a href="https://github.com/mdsumner/sfarc.node">Github</a> with:</p>
+<p>You can install the dev version of sfarc.node from <a href="https://github.com/mdsumner/sfarc.node">Github</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit">
 <span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"mdsumner/sfarc.node"</span><span class="op">)</span></pre></div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
-<p>This shows examples of getting these shared boundaries.</p>
+<p>This shows examples of getting these shared boundaries. The feature id/s (the row number/s) from which each boundary came are listed in a list column, so that we can look up the original polygon/s for each <strong>arc</strong>. (There should be 1, or possibly 2 but results may vary wildly with unclean data).</p>
 <div class="sourceCode" id="cb2"><pre class="downlit">
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/mdsumner/sfarc.node">sfarc.node</a></span><span class="op">)</span>
 
@@ -93,6 +93,7 @@
 <span class="va">arcs</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/sf_arcnode.html">sf_arcnode</a></span><span class="op">(</span><span class="va">sfx</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">arcs</span><span class="op">[</span><span class="st">"arc"</span><span class="op">]</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/grDevices/palettes.html">hcl.colors</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">arcs</span><span class="op">)</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></pre></div>
 <p><img src="reference/figures/README-example-1.png" width="100%"></p>
+<p>We can get the original polygon id/s for a given boundary.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit">
 <span class="va">s</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_len</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">sfx</span><span class="op">)</span><span class="op">[</span><span class="fl">1L</span><span class="op">]</span><span class="op">)</span>, <span class="fl">1L</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">sfx</span><span class="op">[</span><span class="va">arcs</span><span class="op">$</span><span class="va">feature_ids</span><span class="op">[[</span><span class="va">s</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">row</span>, <span class="st">"geom"</span><span class="op">]</span>, reset <span class="op">=</span> <span class="cn">FALSE</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"grey"</span>, <span class="st">"grey10"</span><span class="op">)</span><span class="op">)</span>
