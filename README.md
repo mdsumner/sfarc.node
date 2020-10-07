@@ -58,7 +58,7 @@ plot(dplyr::sample_n(arcs[1], 20), col = "hotpink2", lwd = 6, add = TRUE)
 
 <img src="man/figures/README-individual-2.png" width="100%" />
 
-Works fine with more hardcore data.
+Works fine with more intensive data.
 
 ``` r
 arx <- sf_arcnode(silicate::inlandwaters)
